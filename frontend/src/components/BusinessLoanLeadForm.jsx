@@ -123,7 +123,6 @@ export default function BusinessLoanLeadForm({ onClose, requestedAmount }) {
       const result = await api.sendOtp({
         mobile: form.mobile,
         consent: form.consent,
-        applicationType: "business",
       });
       setOtpSent(true);
       setOtpRetryAfter(result.resendAfterSeconds || 60);
@@ -306,7 +305,7 @@ export default function BusinessLoanLeadForm({ onClose, requestedAmount }) {
                   <SelectField label="Time in business" name="businessVintage" value={form.businessVintage} onChange={change} options={businessVintages} />
                   <Field label="Monthly revenue (optional)" name="monthlyRevenue" type="number" value={form.monthlyRevenue} onChange={change} placeholder="Enter amount in ₹" min="1" max="999999999999" step="1" required={false} />
                   <SelectField label="Financing purpose" name="financingPurpose" value={form.financingPurpose} onChange={change} options={purposes} />
-                  <Field label="Requested amount (₹)" name="requestedAmount" type="number" value={form.requestedAmount} onChange={change} min="10000" max="999999999999" step="1" />
+                  <Field label="Requested amount (₹)" name="requestedAmount" type="number" value={form.requestedAmount} onChange={change} min="10000" max="30000000" step="1" />
                   <Field label="City" name="city" value={form.city} onChange={change} placeholder="City" maxLength={80} autoComplete="address-level2" />
                   <Field label="State" name="state" value={form.state} onChange={change} placeholder="State" maxLength={80} autoComplete="address-level1" />
                 </div>

@@ -30,6 +30,11 @@ const {
 
 test("validates Business Loan consent, mobile, details and OTP", () => {
   assert.equal(sendOtpSchema.safeParse({ mobile: "9876543210", consent: true }).success, true);
+  assert.equal(sendOtpSchema.safeParse({
+    mobile: "9876543210",
+    consent: true,
+    applicationType: "business",
+  }).success, false);
   assert.equal(sendOtpSchema.safeParse({ mobile: "9876543210", consent: false }).success, false);
   assert.equal(verifyOtpSchema.safeParse({ mobile: "9876543210", otp: "1234" }).success, true);
   assert.equal(verifyOtpSchema.safeParse({ mobile: "9876543210", otp: "12345" }).success, false);

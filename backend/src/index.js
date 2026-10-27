@@ -92,9 +92,33 @@ async function start() {
   process.on("SIGTERM", () => shutdown("SIGTERM"));
 }
 
+function safeStartupError(error) {
+  const secrets = [
+    process.env.DB_PASSWORD,
+    process.env.CRM_DB_PASSWORD,
+    process.env.JWT_SECRET,
+    process.env.DATA_ENCRYPTION_KEY,
+    process.env.PHONE_HASH_SECRET,
+    process.env.OTP_HASH_SECRET,
+    process.env.SMS_API_TOKEN,
+  ].filter(Boolean).sort((left, right) => right.length - left.length);
+
+  const redactSecrets = (value) => secrets.reduce(
+    (safeValue, secret) => safeValue.split(secret).join("[REDACTED]"),
+    String(value),
+  );
+
+  return {
+    name: error?.name || "Error",
+    ...(error?.code ? { startupErrorCode: error.code } : {}),
+    message: redactSecrets(error?.message || error),
+    ...(error?.stack ? { stack: redactSecrets(error.stack) } : {}),
+  };
+}
+
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   start().catch((error) => {
-    logger.fatal({ code: error.code || error.name }, "Kuvik Business Loan API failed to start");
+    logger.fatal({ startupError: safeStartupError(error) }, "Kuvik Business Loan API failed to start");
     process.exitCode = 1;
   });
 }

@@ -280,6 +280,44 @@ export default function BusinessLoanLandingPage() {
           </div>
         </section>
 
+        <section className="bp-loan-types" id="loan-types" aria-labelledby="loan-types-title">
+          <div className="bp-loan-types-head">
+            <span className="bp-eyebrow">Two ways to fund your next move</span>
+            <h2 id="loan-types-title">Find a route that fits your business.</h2>
+            <p>Explore unsecured and secured business funding. The lender will confirm which options are available for your profile.</p>
+          </div>
+          <div className="bp-loan-type-list">
+            <article className="bp-loan-type bp-loan-type-unsecured">
+              <div className="bp-loan-type-visual">
+                <img src="/unsecured-business-loan.png" alt="Business owner planning in an office" />
+                <div className="bp-loan-visual-stat"><span><Banknote size={17} /></span><b>Built for momentum</b><small>Capital for the next step</small></div>
+              </div>
+              <div className="bp-loan-type-copy">
+                <span className="bp-loan-type-label"><LockKeyhole size={15} /> No collateral pledge</span>
+                <h3>Unsecured Business Loan</h3>
+                <p>Explore funding for working capital, inventory, equipment or expansion without pledging property as security.</p>
+                <ul><li>Up to ₹50 lakh, subject to lender assessment</li><li>Suitable for eligible day-to-day and growth needs</li></ul>
+                <button onClick={openForm} className="bp-button-primary">Enquire about unsecured funding <ArrowUpRight size={16} /></button>
+                <small className="bp-loan-type-disclaimer">Availability, terms and approval depend on lender assessment.</small>
+              </div>
+            </article>
+            <article className="bp-loan-type bp-loan-type-secured">
+              <div className="bp-loan-type-visual">
+                <img src="/secured-business-loan.png" alt="Business owners reviewing plans at a manufacturing facility" />
+                <div className="bp-loan-visual-stat"><span><BadgeIndianRupee size={17} /></span><b>More room to grow</b><small>Funding options up to ₹3 crore</small></div>
+              </div>
+              <div className="bp-loan-type-copy">
+                <span className="bp-loan-type-label"><ShieldCheck size={15} /> Secured by eligible property</span>
+                <h3>Secured Business Loan</h3>
+                <p>Use eligible property as security to explore larger funding for expansion, working capital or significant business investments.</p>
+                <ul><li>Enquire about funding up to ₹3 crore</li><li>Flexible terms and security depend on lender and property checks</li></ul>
+                <button onClick={openForm} className="bp-button-primary">Enquire about secured funding <ArrowUpRight size={16} /></button>
+                <small className="bp-loan-type-disclaimer">₹3 crore is an enquiry limit, not a guaranteed offer or approval.</small>
+              </div>
+            </article>
+          </div>
+        </section>
+
         <section className="bp-product-note">
           <div className="bp-product-note-inner">
             <span className="bp-product-icon"><BadgeIndianRupee size={23} /></span>
@@ -487,6 +525,10 @@ export default function BusinessLoanLandingPage() {
             <a href="/about-us">About Kuvik</a>
             <a href="/privacy">Privacy notice</a>
           </nav>
+        </div>
+        <div className="bp-footer-trust">
+          <span>Security and quality certifications</span>
+          <img src="/certifications-iso.png" alt="ISO 27001 Information Security Management and ICV certified" />
         </div>
         <div className="bp-footer-bottom">
           <p>Kuvik Solutions Pvt. Ltd. operates the Kuvik Loans website. Loan availability, approval, rate, fees and disbursal depend on the lending partner’s assessment and terms. The calculator is an estimate, not a loan offer.</p>
